@@ -1,0 +1,30 @@
+Write a SQL query to delete all duplicate email entries in a table named Person, keeping only unique emails based on its smallest Id.
+
++----+------------------+
+| Id | Email            |
++----+------------------+
+| 1  | john@example.com |
+| 2  | bob@example.com  |
+| 3  | john@example.com |
++----+------------------+
+Id is the primary key column for this table.
+For example, after running your query, the above Person table should have the following rows:
+
++----+------------------+
+| Id | Email            |
++----+------------------+
+| 1  | john@example.com |
+| 2  | bob@example.com  |
++----+------------------+
+
+'***********Query****************
+'***Approach 1***
+DELETE P2
+FROM PERSON P1
+INNER JOIN PERSON P2
+ON P1.ID<P2.ID
+WHERE P1.EMAIL = P2.EMAIL
+'***Approach 2***
+SELECT P2.ID, P2.EMAIL
+FROM PERSON P2, PERSON P1
+WHERE P1.ID>P2.ID AND P1.EMAIL = P2.EMAIL
